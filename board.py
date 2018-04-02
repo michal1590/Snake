@@ -17,5 +17,10 @@ class Board:
     def add_snake(self, snake_pos):
         self.board[snake_pos[1]][snake_pos[0]] = 'X'
 
+    def add_tail(self, snake_tail):
+        for section in snake_tail:
+            self.board[section[1]][section[0]] = 'x'
+
     def add_cookie(self, cookie_pos):
         self.board[cookie_pos[1]][cookie_pos[0]] = '@'
+

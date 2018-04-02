@@ -24,12 +24,19 @@ class Game:
             self.cookie.new_cookie()
 
     def check_cookie_and_snake(self):
+        check = False  # is there intersection
+
         (x_cookie, y_cookie) = self.cookie.get_cookie()
         (x_snake, y_snake) = self.snake.get_snake_head()
+
         if x_cookie == x_snake and y_cookie == y_snake:
-            return True
-        else:
-            return False
+            check = True
+        if self.snake.length > 0:
+            for section in self.snake.tail:
+                (x_snake, y_snake) = section
+                if x_cookie == x_snake and y_cookie == y_snake:
+                    check = True
+        return check
 
     def move(self):
         i = 0
@@ -50,10 +57,14 @@ class Game:
         self.move()
         self.board.start_new_board()
 
-        self.board.add_snake(self.snake.get_snake_head())
         if self.check_cookie_and_snake():
             self.generate_cookie()
-        self.board.add_cookie((self.cookie.get_cookie()))
+            self.snake.feed()
+
+        self.board.add_cookie(self.cookie.get_cookie())
+        if self.snake.length > 0:
+            self.board.add_tail(self.snake.tail)
+        self.board.add_snake(self.snake.get_snake_head())
 
         self.board.show_board()
 
