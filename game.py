@@ -85,7 +85,9 @@ class Game:
         print(f'Game over! Snake length is {self.snake.length}')
         self.game_over = True
 
-
+    def play(self):
+        while not self.game_over:
+            self.turn()
 
 
 
