@@ -2,6 +2,5 @@ from game import Game
 
 
 game = Game(5)
-for x in range(50):
+while not game.game_over:
     game.turn()
-

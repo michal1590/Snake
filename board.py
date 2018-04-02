@@ -14,5 +14,8 @@ class Board:
             row_str = ' '.join(row)
             print(row_str)
 
-    def add_snake(self, snake_poz):
-        self.board[snake_poz[1]][snake_poz[0]] = 'X'
+    def add_snake(self, snake_pos):
+        self.board[snake_pos[1]][snake_pos[0]] = 'X'
+
+    def add_cookie(self, cookie_pos):
+        self.board[cookie_pos[1]][cookie_pos[0]] = '@'
