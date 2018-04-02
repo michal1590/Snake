@@ -17,7 +17,6 @@ class Snake:
     def move(self, direction):
         if self.length > 0:
             for section in range(self.length-1, 0, -1):
-                print(section)
                 self.tail[section] = self.tail[section-1]
             self.tail[0] = self.get_snake_head()
 

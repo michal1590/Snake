@@ -38,6 +38,18 @@ class Game:
                     check = True
         return check
 
+    def check_snake_and_tail(self):
+        check = False
+        (x_head, y_head) = self.snake.get_snake_head()
+        if self.snake.length > 0:
+            for section in self.snake.tail:
+                (x_tail, y_tail) = section
+                if x_head == x_tail and y_head == y_tail:
+                    check = True
+                    self.game_ends()
+                    break
+        return check
+
     def move(self):
         i = 0
         correct_direction = False
@@ -50,11 +62,12 @@ class Game:
             i += 1
 
         if not correct_direction:
-            print('Game over!')
             self.game_ends()
 
     def turn(self):
         self.move()
+        self.check_snake_and_tail()
+
         self.board.start_new_board()
 
         if self.check_cookie_and_snake():
@@ -69,6 +82,7 @@ class Game:
         self.board.show_board()
 
     def game_ends(self):
+        print(f'Game over! Snake length is {self.snake.length}')
         self.game_over = True
 
 
