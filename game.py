@@ -1,6 +1,20 @@
 import snake as sn
 import board as bd
 import cookies as ck
+import msvcrt
+
+
+def readch(echo=True):
+    "Get a single character on Windows."
+    msvcrt.kbhit()  # clear out keyboard buffer
+    ch = msvcrt.getwch()
+#    if ch in '\x00\xe0':  # arrow or function key prefix?
+#        ch = msvcrt.getwch()  # second call returns the actual key code
+#    ch = msvcrt.getwch()
+#    if echo:
+#        msvcrt.putch(ch)
+
+    return ch
 
 
 class Game:
@@ -54,7 +68,9 @@ class Game:
         i = 0
         correct_direction = False
         while i < 5 and not correct_direction:
-            direction = input("podaj kierunek ruchu: ")
+            #direction = input("podaj kierunek ruchu: ")
+            print("podaj kierunek ruchu (sterowanie: w,s,a,d)")
+            direction = readch()
             if direction in ['w', 's', 'a', 'd']:
                 correct_direction = True
                 self.snake.move(direction)
